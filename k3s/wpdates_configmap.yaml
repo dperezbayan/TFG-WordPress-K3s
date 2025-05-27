@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wpdates
+data:
+  user: wordpress
+  db: wordpress
