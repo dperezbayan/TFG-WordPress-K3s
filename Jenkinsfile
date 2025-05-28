@@ -79,7 +79,7 @@ spec:
 
         stage('Exportar base de datos') {
     steps {
-        sshagent(['danieltfg2']) {
+        sshagent(['VPS_SSH']) {
             sh '''
                 mkdir -p ~/.ssh
                 ssh-keyscan 192.168.100.1 >> ~/.ssh/known_hosts
