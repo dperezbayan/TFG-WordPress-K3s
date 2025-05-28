@@ -1,0 +1,1020 @@
+Started by user Jenkins Admin
+Obtained Jenkinsfile from git https://github.com/dperezbayan/TFG-WordPress-K3s.git
+[Pipeline] Start of Pipeline
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
+Created Pod: kubernetes jenkins/wordpress-ci-cd-14-sqsrb-zkcgq-ldkmr
+[PodInfo] jenkins/wordpress-ci-cd-14-sqsrb-zkcgq-ldkmr
+	Container [buildah] waiting [ContainerCreating] No message
+	Container [jnlp] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [buildah jnlp]
+Agent wordpress-ci-cd-14-sqsrb-zkcgq-ldkmr is provisioned from template wordpress-ci-cd_14-sqsrb-zkcgq
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations:
+    kubernetes.jenkins.io/last-refresh: "1748442124178"
+    buildUrl: "http://jenkins.jenkins.svc.cluster.local:8080/job/wordpress-ci-cd/14/"
+    runUrl: "job/wordpress-ci-cd/14/"
+  labels:
+    jenkins/jenkins-jenkins-agent: "true"
+    jenkins/label-digest: "62524c445d8e05155e196c68ee163054168f420f"
+    jenkins/label: "wordpress-ci-cd_14-sqsrb"
+    kubernetes.jenkins.io/controller: "http___jenkins_jenkins_svc_cluster_local_8080x"
+  name: "wordpress-ci-cd-14-sqsrb-zkcgq-ldkmr"
+  namespace: "jenkins"
+spec:
+  containers:
+  - command:
+    - "cat"
+    image: "docker.io/dperezbayan/buildah:v2"
+    name: "buildah"
+    securityContext:
+      privileged: true
+    tty: true
+    volumeMounts:
+    - mountPath: "/var/lib/containers"
+      name: "containers"
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  - env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_TUNNEL"
+      value: "jenkins-agent.jenkins.svc.cluster.local:50000"
+    - name: "JENKINS_AGENT_NAME"
+      value: "wordpress-ci-cd-14-sqsrb-zkcgq-ldkmr"
+    - name: "REMOTING_OPTS"
+      value: "-noReconnectAfter 1d"
+    - name: "JENKINS_NAME"
+      value: "wordpress-ci-cd-14-sqsrb-zkcgq-ldkmr"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "JENKINS_URL"
+      value: "http://jenkins.jenkins.svc.cluster.local:8080/"
+    image: "jenkins/inbound-agent:3309.v27b_9314fd1a_4-1"
+    name: "jnlp"
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  nodeSelector:
+    kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  volumes:
+  - emptyDir: {}
+    name: "containers"
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+
+Running on wordpress-ci-cd-14-sqsrb-zkcgq-ldkmr in /home/jenkins/agent/workspace/wordpress-ci-cd
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential github-credentials
+Cloning the remote Git repository
+Cloning repository https://github.com/dperezbayan/TFG-WordPress-K3s.git
+ > git init /home/jenkins/agent/workspace/wordpress-ci-cd # timeout=10
+Fetching upstream changes from https://github.com/dperezbayan/TFG-WordPress-K3s.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+using GIT_ASKPASS to set credentials Acceso al repositorio de GitHub desde Jenkins
+ > git fetch --tags --force --progress -- https://github.com/dperezbayan/TFG-WordPress-K3s.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/dperezbayan/TFG-WordPress-K3s.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 28806676557d187155aae03d7c92e4ac39c34b31 (refs/remotes/origin/main)
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 28806676557d187155aae03d7c92e4ac39c34b31 # timeout=10
+Commit message: "Añadido ssh-keyscan para evitar error de verificación de host"
+ > git rev-list --no-walk 28806676557d187155aae03d7c92e4ac39c34b31 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_HUB or $DOCKER_HUB_PSW
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Verificar rama)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Clonar repositorio)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Fetching changes from the remote Git repository
+ > git rev-parse --resolve-git-dir /home/jenkins/agent/workspace/wordpress-ci-cd/.git # timeout=10
+ > git config remote.origin.url https://github.com/dperezbayan/TFG-WordPress-K3s.git # timeout=10
+Fetching upstream changes from https://github.com/dperezbayan/TFG-WordPress-K3s.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/dperezbayan/TFG-WordPress-K3s.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision 28806676557d187155aae03d7c92e4ac39c34b31 (refs/remotes/origin/main)
+Commit message: "Añadido ssh-keyscan para evitar error de verificación de host"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Crear y subir imagen)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 28806676557d187155aae03d7c92e4ac39c34b31 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main 28806676557d187155aae03d7c92e4ac39c34b31 # timeout=10
++ buildah build -t dperezbayan/wpimagen:14 .
+STEP 1/10: FROM debian:12
+Resolved "debian" as an alias (/etc/containers/registries.conf.d/shortnames.conf)
+Trying to pull docker.io/library/debian:12...
+Getting image source signatures
+Copying blob sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964
+Copying config sha256:59a6c609f641631b7966835a7298c01b9f0db9ddda5ad9f92e60e64ca40dfed8
+Writing manifest to image destination
+Storing signatures
+STEP 2/10: ENV WORDPRESS_DB_USER wordpress
+STEP 3/10: ENV WORDPRESS_DB_PASSWORD wordpress
+STEP 4/10: ENV WORDPRESS_DB_NAME wordpress
+STEP 5/10: ENV WORDPRESS_DB_HOST mysql-service
+STEP 6/10: RUN apt-get update && apt-get install -y     apache2     mariadb-client     php     php-mysql     curl     && rm -rf /var/lib/apt/lists/*
+Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8793 kB]
+Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [512 B]
+Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [261 kB]
+Fetched 9309 kB in 5s (1701 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  apache2-bin apache2-data apache2-utils ca-certificates krb5-locales
+  libapache2-mod-php8.2 libapr1 libaprutil1 libaprutil1-dbd-sqlite3
+  libaprutil1-ldap libargon2-1 libbrotli1 libbsd0 libconfig-inifiles-perl
+  libcurl4 libdbd-mariadb-perl libdbi-perl libedit2 libexpat1 libgdbm-compat4
+  libgdbm6 libgpm2 libgssapi-krb5-2 libicu72 libjansson4 libk5crypto3
+  libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 libldap-common
+  liblua5.3-0 libmagic-mgc libmagic1 libmariadb3 libncurses6 libncursesw6
+  libnghttp2-14 libperl5.36 libproc2-0 libpsl5 librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libsodium23 libsqlite3-0 libssh2-1
+  libssl3 libterm-readkey-perl libxml2 mariadb-client-core mariadb-common
+  media-types mysql-common netbase openssl perl perl-modules-5.36 php-common
+  php8.2 php8.2-cli php8.2-common php8.2-mysql php8.2-opcache php8.2-readline
+  procps psmisc publicsuffix sensible-utils ssl-cert ucf
+Suggested packages:
+  apache2-doc apache2-suexec-pristine | apache2-suexec-custom www-browser
+  php-pear libclone-perl libmldbm-perl libnet-daemon-perl
+  libsql-statement-perl gdbm-l10n gpm krb5-doc krb5-user file
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal
+  libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql perl-doc
+  libterm-readline-gnu-perl | libterm-readline-perl-perl make
+  libtap-harness-archive-perl
+The following NEW packages will be installed:
+  apache2 apache2-bin apache2-data apache2-utils ca-certificates curl
+  krb5-locales libapache2-mod-php8.2 libapr1 libaprutil1
+  libaprutil1-dbd-sqlite3 libaprutil1-ldap libargon2-1 libbrotli1 libbsd0
+  libconfig-inifiles-perl libcurl4 libdbd-mariadb-perl libdbi-perl libedit2
+  libexpat1 libgdbm-compat4 libgdbm6 libgpm2 libgssapi-krb5-2 libicu72
+  libjansson4 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0
+  libldap-2.5-0 libldap-common liblua5.3-0 libmagic-mgc libmagic1 libmariadb3
+  libncurses6 libncursesw6 libnghttp2-14 libperl5.36 libproc2-0 libpsl5
+  librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsodium23
+  libsqlite3-0 libssh2-1 libssl3 libterm-readkey-perl libxml2 mariadb-client
+  mariadb-client-core mariadb-common media-types mysql-common netbase openssl
+  perl perl-modules-5.36 php php-common php-mysql php8.2 php8.2-cli
+  php8.2-common php8.2-mysql php8.2-opcache php8.2-readline procps psmisc
+  publicsuffix sensible-utils ssl-cert ucf
+0 upgraded, 77 newly installed, 0 to remove and 0 not upgraded.
+Need to get 38.8 MB of archives.
+After this operation, 233 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 perl-modules-5.36 all 5.36.0-7+deb12u2 [2815 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 libgdbm6 amd64 1.23-3 [72.2 kB]
+Get:3 http://deb.debian.org/debian bookworm/main amd64 libgdbm-compat4 amd64 1.23-3 [48.2 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 libperl5.36 amd64 5.36.0-7+deb12u2 [4207 kB]
+Get:5 http://deb.debian.org/debian bookworm/main amd64 perl amd64 5.36.0-7+deb12u2 [239 kB]
+Get:6 http://deb.debian.org/debian bookworm/main amd64 libapr1 amd64 1.7.2-3+deb12u1 [102 kB]
+Get:7 http://deb.debian.org/debian bookworm/main amd64 libexpat1 amd64 2.5.0-1+deb12u1 [98.9 kB]
+Get:8 http://deb.debian.org/debian bookworm/main amd64 libssl3 amd64 3.0.16-1~deb12u1 [2026 kB]
+Get:9 http://deb.debian.org/debian bookworm/main amd64 libaprutil1 amd64 1.6.3-1 [87.8 kB]
+Get:10 http://deb.debian.org/debian bookworm/main amd64 libsqlite3-0 amd64 3.40.1-2+deb12u1 [839 kB]
+Get:11 http://deb.debian.org/debian bookworm/main amd64 libaprutil1-dbd-sqlite3 amd64 1.6.3-1 [13.6 kB]
+Get:12 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg-10 [20.3 kB]
+Get:13 http://deb.debian.org/debian bookworm/main amd64 libsasl2-2 amd64 2.1.28+dfsg-10 [59.7 kB]
+Get:14 http://deb.debian.org/debian bookworm/main amd64 libldap-2.5-0 amd64 2.5.13+dfsg-5 [183 kB]
+Get:15 http://deb.debian.org/debian bookworm/main amd64 libaprutil1-ldap amd64 1.6.3-1 [11.8 kB]
+Get:16 http://deb.debian.org/debian bookworm/main amd64 libbrotli1 amd64 1.0.9-2+b6 [275 kB]
+Get:17 http://deb.debian.org/debian bookworm/main amd64 libkrb5support0 amd64 1.20.1-2+deb12u3 [32.8 kB]
+Get:18 http://deb.debian.org/debian bookworm/main amd64 libk5crypto3 amd64 1.20.1-2+deb12u3 [78.9 kB]
+Get:19 http://deb.debian.org/debian bookworm/main amd64 libkeyutils1 amd64 1.6.3-2 [8808 B]
+Get:20 http://deb.debian.org/debian bookworm/main amd64 libkrb5-3 amd64 1.20.1-2+deb12u3 [332 kB]
+Get:21 http://deb.debian.org/debian bookworm/main amd64 libgssapi-krb5-2 amd64 1.20.1-2+deb12u3 [135 kB]
+Get:22 http://deb.debian.org/debian bookworm/main amd64 libnghttp2-14 amd64 1.52.0-1+deb12u2 [73.0 kB]
+Get:23 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
+Get:24 http://deb.debian.org/debian bookworm/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b2 [60.8 kB]
+Get:25 http://deb.debian.org/debian bookworm/main amd64 libssh2-1 amd64 1.10.0-3+b1 [179 kB]
+Get:26 http://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u12 [391 kB]
+Get:27 http://deb.debian.org/debian bookworm/main amd64 libjansson4 amd64 2.14-2 [40.8 kB]
+Get:28 http://deb.debian.org/debian bookworm/main amd64 liblua5.3-0 amd64 5.3.6-2 [123 kB]
+Get:29 http://deb.debian.org/debian bookworm/main amd64 libicu72 amd64 72.1-3 [9376 kB]
+Get:30 http://deb.debian.org/debian bookworm/main amd64 libxml2 amd64 2.9.14+dfsg-1.3~deb12u1 [687 kB]
+Get:31 http://deb.debian.org/debian bookworm/main amd64 apache2-bin amd64 2.4.62-1~deb12u2 [1386 kB]
+Get:32 http://deb.debian.org/debian bookworm/main amd64 apache2-data all 2.4.62-1~deb12u2 [160 kB]
+Get:33 http://deb.debian.org/debian bookworm/main amd64 apache2-utils amd64 2.4.62-1~deb12u2 [210 kB]
+Get:34 http://deb.debian.org/debian bookworm/main amd64 media-types all 10.0.0 [26.1 kB]
+Get:35 http://deb.debian.org/debian bookworm/main amd64 libncursesw6 amd64 6.4-4 [134 kB]
+Get:36 http://deb.debian.org/debian bookworm/main amd64 libproc2-0 amd64 2:4.0.2-3 [62.8 kB]
+Get:37 http://deb.debian.org/debian bookworm/main amd64 procps amd64 2:4.0.2-3 [709 kB]
+Get:38 http://deb.debian.org/debian bookworm/main amd64 apache2 amd64 2.4.62-1~deb12u2 [223 kB]
+Get:39 http://deb.debian.org/debian bookworm/main amd64 netbase all 6.4 [12.8 kB]
+Get:40 http://deb.debian.org/debian bookworm/main amd64 sensible-utils all 0.0.17+nmu1 [19.0 kB]
+Get:41 http://deb.debian.org/debian bookworm/main amd64 openssl amd64 3.0.16-1~deb12u1 [1427 kB]
+Get:42 http://deb.debian.org/debian bookworm/main amd64 ca-certificates all 20230311 [153 kB]
+Get:43 http://deb.debian.org/debian bookworm/main amd64 krb5-locales all 1.20.1-2+deb12u3 [63.1 kB]
+Get:44 http://deb.debian.org/debian bookworm/main amd64 ucf all 3.0043+nmu1+deb12u1 [55.3 kB]
+Get:45 http://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u12 [315 kB]
+Get:46 http://deb.debian.org/debian bookworm/main amd64 libmagic-mgc amd64 1:5.44-3 [305 kB]
+Get:47 http://deb.debian.org/debian bookworm/main amd64 libmagic1 amd64 1:5.44-3 [104 kB]
+Get:48 http://deb.debian.org/debian bookworm/main amd64 libbsd0 amd64 0.11.7-2 [117 kB]
+Get:49 http://deb.debian.org/debian bookworm/main amd64 libedit2 amd64 3.1-20221030-2 [93.0 kB]
+Get:50 http://deb.debian.org/debian bookworm/main amd64 psmisc amd64 23.6-1 [259 kB]
+Get:51 http://deb.debian.org/debian bookworm/main amd64 php-common all 2:93 [13.1 kB]
+Get:52 http://deb.debian.org/debian bookworm/main amd64 php8.2-common amd64 8.2.28-1~deb12u1 [688 kB]
+Get:53 http://deb.debian.org/debian bookworm/main amd64 php8.2-opcache amd64 8.2.28-1~deb12u1 [346 kB]
+Get:54 http://deb.debian.org/debian bookworm/main amd64 php8.2-readline amd64 8.2.28-1~deb12u1 [12.4 kB]
+Get:55 http://deb.debian.org/debian bookworm/main amd64 libargon2-1 amd64 0~20171227-0.3+deb12u1 [19.4 kB]
+Get:56 http://deb.debian.org/debian bookworm/main amd64 libsodium23 amd64 1.0.18-1 [161 kB]
+Get:57 http://deb.debian.org/debian bookworm/main amd64 php8.2-cli amd64 8.2.28-1~deb12u1 [1739 kB]
+Get:58 http://deb.debian.org/debian bookworm/main amd64 libapache2-mod-php8.2 amd64 8.2.28-1~deb12u1 [1679 kB]
+Get:59 http://deb.debian.org/debian bookworm/main amd64 libconfig-inifiles-perl all 3.000003-2 [45.9 kB]
+Get:60 http://deb.debian.org/debian bookworm/main amd64 libdbi-perl amd64 1.643-4 [773 kB]
+Get:61 http://deb.debian.org/debian bookworm/main amd64 mysql-common all 5.8+1.1.0 [6636 B]
+Get:62 http://deb.debian.org/debian bookworm/main amd64 mariadb-common all 1:10.11.11-0+deb12u1 [25.5 kB]
+Get:63 http://deb.debian.org/debian bookworm/main amd64 libmariadb3 amd64 1:10.11.11-0+deb12u1 [180 kB]
+Get:64 http://deb.debian.org/debian bookworm/main amd64 libdbd-mariadb-perl amd64 1.22-1+b1 [93.8 kB]
+Get:65 http://deb.debian.org/debian bookworm/main amd64 libgpm2 amd64 1.20.7-10+b1 [14.2 kB]
+Get:66 http://deb.debian.org/debian bookworm/main amd64 libldap-common all 2.5.13+dfsg-5 [29.3 kB]
+Get:67 http://deb.debian.org/debian bookworm/main amd64 libncurses6 amd64 6.4-4 [103 kB]
+Get:68 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules amd64 2.1.28+dfsg-10 [66.6 kB]
+Get:69 http://deb.debian.org/debian bookworm/main amd64 libterm-readkey-perl amd64 2.38-2+b1 [24.5 kB]
+Get:70 http://deb.debian.org/debian bookworm/main amd64 mariadb-client-core amd64 1:10.11.11-0+deb12u1 [888 kB]
+Get:71 http://deb.debian.org/debian bookworm/main amd64 mariadb-client amd64 1:10.11.11-0+deb12u1 [3027 kB]
+Get:72 http://deb.debian.org/debian bookworm/main amd64 php8.2 all 8.2.28-1~deb12u1 [46.9 kB]
+Get:73 http://deb.debian.org/debian bookworm/main amd64 php all 2:8.2+93 [3628 B]
+Get:74 http://deb.debian.org/debian bookworm/main amd64 php8.2-mysql amd64 8.2.28-1~deb12u1 [117 kB]
+Get:75 http://deb.debian.org/debian bookworm/main amd64 php-mysql all 2:8.2+93 [3660 B]
+Get:76 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
+Get:77 http://deb.debian.org/debian bookworm/main amd64 ssl-cert all 1.1.2 [21.1 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 38.8 MB in 3s (11.7 MB/s)
+Selecting previously unselected package perl-modules-5.36.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 6089 files and directories currently installed.)
+Preparing to unpack .../00-perl-modules-5.36_5.36.0-7+deb12u2_all.deb ...
+Unpacking perl-modules-5.36 (5.36.0-7+deb12u2) ...
+Selecting previously unselected package libgdbm6:amd64.
+Preparing to unpack .../01-libgdbm6_1.23-3_amd64.deb ...
+Unpacking libgdbm6:amd64 (1.23-3) ...
+Selecting previously unselected package libgdbm-compat4:amd64.
+Preparing to unpack .../02-libgdbm-compat4_1.23-3_amd64.deb ...
+Unpacking libgdbm-compat4:amd64 (1.23-3) ...
+Selecting previously unselected package libperl5.36:amd64.
+Preparing to unpack .../03-libperl5.36_5.36.0-7+deb12u2_amd64.deb ...
+Unpacking libperl5.36:amd64 (5.36.0-7+deb12u2) ...
+Selecting previously unselected package perl.
+Preparing to unpack .../04-perl_5.36.0-7+deb12u2_amd64.deb ...
+Unpacking perl (5.36.0-7+deb12u2) ...
+Selecting previously unselected package libapr1:amd64.
+Preparing to unpack .../05-libapr1_1.7.2-3+deb12u1_amd64.deb ...
+Unpacking libapr1:amd64 (1.7.2-3+deb12u1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../06-libexpat1_2.5.0-1+deb12u1_amd64.deb ...
+Unpacking libexpat1:amd64 (2.5.0-1+deb12u1) ...
+Selecting previously unselected package libssl3:amd64.
+Preparing to unpack .../07-libssl3_3.0.16-1~deb12u1_amd64.deb ...
+Unpacking libssl3:amd64 (3.0.16-1~deb12u1) ...
+Selecting previously unselected package libaprutil1:amd64.
+Preparing to unpack .../08-libaprutil1_1.6.3-1_amd64.deb ...
+Unpacking libaprutil1:amd64 (1.6.3-1) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../09-libsqlite3-0_3.40.1-2+deb12u1_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.40.1-2+deb12u1) ...
+Selecting previously unselected package libaprutil1-dbd-sqlite3:amd64.
+Preparing to unpack .../10-libaprutil1-dbd-sqlite3_1.6.3-1_amd64.deb ...
+Unpacking libaprutil1-dbd-sqlite3:amd64 (1.6.3-1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../11-libsasl2-modules-db_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../12-libsasl2-2_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package libldap-2.5-0:amd64.
+Preparing to unpack .../13-libldap-2.5-0_2.5.13+dfsg-5_amd64.deb ...
+Unpacking libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+Selecting previously unselected package libaprutil1-ldap:amd64.
+Preparing to unpack .../14-libaprutil1-ldap_1.6.3-1_amd64.deb ...
+Unpacking libaprutil1-ldap:amd64 (1.6.3-1) ...
+Selecting previously unselected package libbrotli1:amd64.
+Preparing to unpack .../15-libbrotli1_1.0.9-2+b6_amd64.deb ...
+Unpacking libbrotli1:amd64 (1.0.9-2+b6) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../16-libkrb5support0_1.20.1-2+deb12u3_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.20.1-2+deb12u3) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../17-libk5crypto3_1.20.1-2+deb12u3_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.20.1-2+deb12u3) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../18-libkeyutils1_1.6.3-2_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.6.3-2) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../19-libkrb5-3_1.20.1-2+deb12u3_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.20.1-2+deb12u3) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../20-libgssapi-krb5-2_1.20.1-2+deb12u3_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.20.1-2+deb12u3) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../21-libnghttp2-14_1.52.0-1+deb12u2_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../22-libpsl5_0.21.2-1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.21.2-1) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../23-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Selecting previously unselected package libssh2-1:amd64.
+Preparing to unpack .../24-libssh2-1_1.10.0-3+b1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.10.0-3+b1) ...
+Selecting previously unselected package libcurl4:amd64.
+Preparing to unpack .../25-libcurl4_7.88.1-10+deb12u12_amd64.deb ...
+Unpacking libcurl4:amd64 (7.88.1-10+deb12u12) ...
+Selecting previously unselected package libjansson4:amd64.
+Preparing to unpack .../26-libjansson4_2.14-2_amd64.deb ...
+Unpacking libjansson4:amd64 (2.14-2) ...
+Selecting previously unselected package liblua5.3-0:amd64.
+Preparing to unpack .../27-liblua5.3-0_5.3.6-2_amd64.deb ...
+Unpacking liblua5.3-0:amd64 (5.3.6-2) ...
+Selecting previously unselected package libicu72:amd64.
+Preparing to unpack .../28-libicu72_72.1-3_amd64.deb ...
+Unpacking libicu72:amd64 (72.1-3) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../29-libxml2_2.9.14+dfsg-1.3~deb12u1_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.14+dfsg-1.3~deb12u1) ...
+Selecting previously unselected package apache2-bin.
+Preparing to unpack .../30-apache2-bin_2.4.62-1~deb12u2_amd64.deb ...
+Unpacking apache2-bin (2.4.62-1~deb12u2) ...
+Selecting previously unselected package apache2-data.
+Preparing to unpack .../31-apache2-data_2.4.62-1~deb12u2_all.deb ...
+Unpacking apache2-data (2.4.62-1~deb12u2) ...
+Selecting previously unselected package apache2-utils.
+Preparing to unpack .../32-apache2-utils_2.4.62-1~deb12u2_amd64.deb ...
+Unpacking apache2-utils (2.4.62-1~deb12u2) ...
+Selecting previously unselected package media-types.
+Preparing to unpack .../33-media-types_10.0.0_all.deb ...
+Unpacking media-types (10.0.0) ...
+Selecting previously unselected package libncursesw6:amd64.
+Preparing to unpack .../34-libncursesw6_6.4-4_amd64.deb ...
+Unpacking libncursesw6:amd64 (6.4-4) ...
+Selecting previously unselected package libproc2-0:amd64.
+Preparing to unpack .../35-libproc2-0_2%3a4.0.2-3_amd64.deb ...
+Unpacking libproc2-0:amd64 (2:4.0.2-3) ...
+Selecting previously unselected package procps.
+Preparing to unpack .../36-procps_2%3a4.0.2-3_amd64.deb ...
+Unpacking procps (2:4.0.2-3) ...
+Selecting previously unselected package apache2.
+Preparing to unpack .../37-apache2_2.4.62-1~deb12u2_amd64.deb ...
+Unpacking apache2 (2.4.62-1~deb12u2) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../38-netbase_6.4_all.deb ...
+Unpacking netbase (6.4) ...
+Selecting previously unselected package sensible-utils.
+Preparing to unpack .../39-sensible-utils_0.0.17+nmu1_all.deb ...
+Unpacking sensible-utils (0.0.17+nmu1) ...
+Selecting previously unselected package openssl.
+Preparing to unpack .../40-openssl_3.0.16-1~deb12u1_amd64.deb ...
+Unpacking openssl (3.0.16-1~deb12u1) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../41-ca-certificates_20230311_all.deb ...
+Unpacking ca-certificates (20230311) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../42-krb5-locales_1.20.1-2+deb12u3_all.deb ...
+Unpacking krb5-locales (1.20.1-2+deb12u3) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../43-ucf_3.0043+nmu1+deb12u1_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0043+nmu1+deb12u1) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../44-curl_7.88.1-10+deb12u12_amd64.deb ...
+Unpacking curl (7.88.1-10+deb12u12) ...
+Selecting previously unselected package libmagic-mgc.
+Preparing to unpack .../45-libmagic-mgc_1%3a5.44-3_amd64.deb ...
+Unpacking libmagic-mgc (1:5.44-3) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../46-libmagic1_1%3a5.44-3_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.44-3) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../47-libbsd0_0.11.7-2_amd64.deb ...
+Unpacking libbsd0:amd64 (0.11.7-2) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../48-libedit2_3.1-20221030-2_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20221030-2) ...
+Selecting previously unselected package psmisc.
+Preparing to unpack .../49-psmisc_23.6-1_amd64.deb ...
+Unpacking psmisc (23.6-1) ...
+Selecting previously unselected package php-common.
+Preparing to unpack .../50-php-common_2%3a93_all.deb ...
+Unpacking php-common (2:93) ...
+Selecting previously unselected package php8.2-common.
+Preparing to unpack .../51-php8.2-common_8.2.28-1~deb12u1_amd64.deb ...
+Unpacking php8.2-common (8.2.28-1~deb12u1) ...
+Selecting previously unselected package php8.2-opcache.
+Preparing to unpack .../52-php8.2-opcache_8.2.28-1~deb12u1_amd64.deb ...
+Unpacking php8.2-opcache (8.2.28-1~deb12u1) ...
+Selecting previously unselected package php8.2-readline.
+Preparing to unpack .../53-php8.2-readline_8.2.28-1~deb12u1_amd64.deb ...
+Unpacking php8.2-readline (8.2.28-1~deb12u1) ...
+Selecting previously unselected package libargon2-1:amd64.
+Preparing to unpack .../54-libargon2-1_0~20171227-0.3+deb12u1_amd64.deb ...
+Unpacking libargon2-1:amd64 (0~20171227-0.3+deb12u1) ...
+Selecting previously unselected package libsodium23:amd64.
+Preparing to unpack .../55-libsodium23_1.0.18-1_amd64.deb ...
+Unpacking libsodium23:amd64 (1.0.18-1) ...
+Selecting previously unselected package php8.2-cli.
+Preparing to unpack .../56-php8.2-cli_8.2.28-1~deb12u1_amd64.deb ...
+Unpacking php8.2-cli (8.2.28-1~deb12u1) ...
+Selecting previously unselected package libapache2-mod-php8.2.
+Preparing to unpack .../57-libapache2-mod-php8.2_8.2.28-1~deb12u1_amd64.deb ...
+Unpacking libapache2-mod-php8.2 (8.2.28-1~deb12u1) ...
+Selecting previously unselected package libconfig-inifiles-perl.
+Preparing to unpack .../58-libconfig-inifiles-perl_3.000003-2_all.deb ...
+Unpacking libconfig-inifiles-perl (3.000003-2) ...
+Selecting previously unselected package libdbi-perl:amd64.
+Preparing to unpack .../59-libdbi-perl_1.643-4_amd64.deb ...
+Unpacking libdbi-perl:amd64 (1.643-4) ...
+Selecting previously unselected package mysql-common.
+Preparing to unpack .../60-mysql-common_5.8+1.1.0_all.deb ...
+Unpacking mysql-common (5.8+1.1.0) ...
+Selecting previously unselected package mariadb-common.
+Preparing to unpack .../61-mariadb-common_1%3a10.11.11-0+deb12u1_all.deb ...
+Unpacking mariadb-common (1:10.11.11-0+deb12u1) ...
+Selecting previously unselected package libmariadb3:amd64.
+Preparing to unpack .../62-libmariadb3_1%3a10.11.11-0+deb12u1_amd64.deb ...
+Unpacking libmariadb3:amd64 (1:10.11.11-0+deb12u1) ...
+Selecting previously unselected package libdbd-mariadb-perl.
+Preparing to unpack .../63-libdbd-mariadb-perl_1.22-1+b1_amd64.deb ...
+Unpacking libdbd-mariadb-perl (1.22-1+b1) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../64-libgpm2_1.20.7-10+b1_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.7-10+b1) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../65-libldap-common_2.5.13+dfsg-5_all.deb ...
+Unpacking libldap-common (2.5.13+dfsg-5) ...
+Selecting previously unselected package libncurses6:amd64.
+Preparing to unpack .../66-libncurses6_6.4-4_amd64.deb ...
+Unpacking libncurses6:amd64 (6.4-4) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../67-libsasl2-modules_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package libterm-readkey-perl.
+Preparing to unpack .../68-libterm-readkey-perl_2.38-2+b1_amd64.deb ...
+Unpacking libterm-readkey-perl (2.38-2+b1) ...
+Selecting previously unselected package mariadb-client-core.
+Preparing to unpack .../69-mariadb-client-core_1%3a10.11.11-0+deb12u1_amd64.deb ...
+Unpacking mariadb-client-core (1:10.11.11-0+deb12u1) ...
+Selecting previously unselected package mariadb-client.
+Preparing to unpack .../70-mariadb-client_1%3a10.11.11-0+deb12u1_amd64.deb ...
+Unpacking mariadb-client (1:10.11.11-0+deb12u1) ...
+Selecting previously unselected package php8.2.
+Preparing to unpack .../71-php8.2_8.2.28-1~deb12u1_all.deb ...
+Unpacking php8.2 (8.2.28-1~deb12u1) ...
+Selecting previously unselected package php.
+Preparing to unpack .../72-php_2%3a8.2+93_all.deb ...
+Unpacking php (2:8.2+93) ...
+Selecting previously unselected package php8.2-mysql.
+Preparing to unpack .../73-php8.2-mysql_8.2.28-1~deb12u1_amd64.deb ...
+Unpacking php8.2-mysql (8.2.28-1~deb12u1) ...
+Selecting previously unselected package php-mysql.
+Preparing to unpack .../74-php-mysql_2%3a8.2+93_all.deb ...
+Unpacking php-mysql (2:8.2+93) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../75-publicsuffix_20230209.2326-1_all.deb ...
+Unpacking publicsuffix (20230209.2326-1) ...
+Selecting previously unselected package ssl-cert.
+Preparing to unpack .../76-ssl-cert_1.1.2_all.deb ...
+Unpacking ssl-cert (1.1.2) ...
+Setting up libconfig-inifiles-perl (3.000003-2) ...
+Setting up libexpat1:amd64 (2.5.0-1+deb12u1) ...
+Setting up media-types (10.0.0) ...
+Setting up mysql-common (5.8+1.1.0) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Setting up libkeyutils1:amd64 (1.6.3-2) ...
+Setting up libpsl5:amd64 (0.21.2-1) ...
+Setting up libsodium23:amd64 (1.0.18-1) ...
+Setting up libgpm2:amd64 (1.20.7-10+b1) ...
+Setting up libicu72:amd64 (72.1-3) ...
+Setting up libmagic-mgc (1:5.44-3) ...
+Setting up psmisc (23.6-1) ...
+Setting up libargon2-1:amd64 (0~20171227-0.3+deb12u1) ...
+Setting up libbrotli1:amd64 (1.0.9-2+b6) ...
+Setting up libsqlite3-0:amd64 (3.40.1-2+deb12u1) ...
+Setting up libssl3:amd64 (3.0.16-1~deb12u1) ...
+Setting up libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+Setting up libmagic1:amd64 (1:5.44-3) ...
+Setting up libapr1:amd64 (1.7.2-3+deb12u1) ...
+Setting up krb5-locales (1.20.1-2+deb12u3) ...
+Setting up libldap-common (2.5.13+dfsg-5) ...
+Setting up libjansson4:amd64 (2.14-2) ...
+Setting up libkrb5support0:amd64 (1.20.1-2+deb12u3) ...
+Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+Setting up mariadb-common (1:10.11.11-0+deb12u1) ...
+update-alternatives: using /etc/mysql/mariadb.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Setting up perl-modules-5.36 (5.36.0-7+deb12u2) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Setting up libncurses6:amd64 (6.4-4) ...
+Setting up libproc2-0:amd64 (2:4.0.2-3) ...
+Setting up libmariadb3:amd64 (1:10.11.11-0+deb12u1) ...
+Setting up libncursesw6:amd64 (6.4-4) ...
+Setting up libk5crypto3:amd64 (1.20.1-2+deb12u3) ...
+Setting up libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+Setting up sensible-utils (0.0.17+nmu1) ...
+Setting up liblua5.3-0:amd64 (5.3.6-2) ...
+Setting up procps (2:4.0.2-3) ...
+Setting up libssh2-1:amd64 (1.10.0-3+b1) ...
+Setting up netbase (6.4) ...
+Setting up libkrb5-3:amd64 (1.20.1-2+deb12u3) ...
+Setting up apache2-data (2.4.62-1~deb12u2) ...
+Setting up openssl (3.0.16-1~deb12u1) ...
+Setting up libbsd0:amd64 (0.11.7-2) ...
+Setting up publicsuffix (20230209.2326-1) ...
+Setting up libxml2:amd64 (2.9.14+dfsg-1.3~deb12u1) ...
+Setting up libgdbm6:amd64 (1.23-3) ...
+Setting up libaprutil1:amd64 (1.6.3-1) ...
+Setting up php-common (2:93) ...
+Setting up libedit2:amd64 (3.1-20221030-2) ...
+Setting up libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+Setting up libaprutil1-dbd-sqlite3:amd64 (1.6.3-1) ...
+Setting up libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+Setting up mariadb-client-core (1:10.11.11-0+deb12u1) ...
+Setting up ca-certificates (20230311) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+140 added, 0 removed; done.
+Setting up ssl-cert (1.1.2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+hostname: Temporary failure in name resolution
+make-ssl-cert: Could not get FQDN, using '8b07d22f56e1'.
+make-ssl-cert: You may want to fix your /etc/hosts and/or DNS setup and run
+make-ssl-cert: 'make-ssl-cert generate-default-snakeoil --force-overwrite'
+make-ssl-cert: again.
+Setting up libgssapi-krb5-2:amd64 (1.20.1-2+deb12u3) ...
+Setting up libgdbm-compat4:amd64 (1.23-3) ...
+Setting up ucf (3.0043+nmu1+deb12u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+Setting up libcurl4:amd64 (7.88.1-10+deb12u12) ...
+Setting up curl (7.88.1-10+deb12u12) ...
+Setting up libperl5.36:amd64 (5.36.0-7+deb12u2) ...
+Setting up apache2-utils (2.4.62-1~deb12u2) ...
+Setting up php8.2-common (8.2.28-1~deb12u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/calendar.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/ctype.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/exif.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/fileinfo.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/ffi.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/ftp.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/gettext.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/iconv.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/pdo.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/phar.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/posix.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/shmop.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/sockets.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/sysvmsg.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/sysvsem.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/sysvshm.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/tokenizer.ini with new version
+Setting up php8.2-mysql (8.2.28-1~deb12u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/mysqlnd.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/mysqli.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/pdo_mysql.ini with new version
+Setting up php8.2-opcache (8.2.28-1~deb12u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/opcache.ini with new version
+Setting up php8.2-readline (8.2.28-1~deb12u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/mods-available/readline.ini with new version
+Setting up libaprutil1-ldap:amd64 (1.6.3-1) ...
+Setting up perl (5.36.0-7+deb12u2) ...
+Setting up libterm-readkey-perl (2.38-2+b1) ...
+Setting up php8.2-cli (8.2.28-1~deb12u1) ...
+update-alternatives: using /usr/bin/php8.2 to provide /usr/bin/php (php) in auto mode
+update-alternatives: using /usr/bin/phar8.2 to provide /usr/bin/phar (phar) in auto mode
+update-alternatives: using /usr/bin/phar.phar8.2 to provide /usr/bin/phar.phar (phar.phar) in auto mode
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/cli/php.ini with new version
+Setting up libdbi-perl:amd64 (1.643-4) ...
+Setting up php-mysql (2:8.2+93) ...
+Setting up mariadb-client (1:10.11.11-0+deb12u1) ...
+Setting up apache2-bin (2.4.62-1~deb12u2) ...
+Setting up libdbd-mariadb-perl (1.22-1+b1) ...
+Setting up libapache2-mod-php8.2 (8.2.28-1~deb12u1) ...
+Package apache2 is not configured yet. Will defer actions by package libapache2-mod-php8.2.
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/php/8.2/apache2/php.ini with new version
+No module matches 
+Setting up apache2 (2.4.62-1~deb12u2) ...
+Enabling module mpm_event.
+Enabling module authz_core.
+Enabling module authz_host.
+Enabling module authn_core.
+Enabling module auth_basic.
+Enabling module access_compat.
+Enabling module authn_file.
+Enabling module authz_user.
+Enabling module alias.
+Enabling module dir.
+Enabling module autoindex.
+Enabling module env.
+Enabling module mime.
+Enabling module negotiation.
+Enabling module setenvif.
+Enabling module filter.
+Enabling module deflate.
+Enabling module status.
+Enabling module reqtimeout.
+Enabling conf charset.
+Enabling conf localized-error-pages.
+Enabling conf other-vhosts-access-log.
+Enabling conf security.
+Enabling conf serve-cgi-bin.
+Enabling site 000-default.
+info: Switch to mpm prefork for package libapache2-mod-php8.2
+Module mpm_event disabled.
+Enabling module mpm_prefork.
+info: Executing deferred 'a2enmod php8.2' for package libapache2-mod-php8.2
+Enabling module php8.2.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up php8.2 (8.2.28-1~deb12u1) ...
+Setting up php (2:8.2+93) ...
+Processing triggers for libc-bin (2.36-9+deb12u10) ...
+Processing triggers for ca-certificates (20230311) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Processing triggers for php8.2-cli (8.2.28-1~deb12u1) ...
+Processing triggers for libapache2-mod-php8.2 (8.2.28-1~deb12u1) ...
+STEP 7/10: RUN curl -o wordpress.tar.gz https://wordpress.org/latest.tar.gz &&     tar -xzf wordpress.tar.gz &&     mv wordpress/* /var/www/html &&     rm -rf wordpress wordpress.tar.gz /var/www/html/index.html
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0 25.6M    0  260k    0     0   269k      0  0:01:37 --:--:--  0:01:37  269k
+ 31 25.6M   31 8367k    0     0  4253k      0  0:00:06  0:00:01  0:00:05 4254k
+ 67 25.6M   67 17.2M    0     0  5878k      0  0:00:04  0:00:02  0:00:02 5877k
+100 25.6M  100 25.6M    0     0  8008k      0  0:00:03  0:00:03 --:--:-- 8009k
+STEP 8/10: RUN chown -R www-data:www-data /var/www/html
+STEP 9/10: EXPOSE 80 443
+STEP 10/10: CMD ["apache2ctl", "-D", "FOREGROUND"]
+COMMIT dperezbayan/wpimagen:14
+Getting image source signatures
+Copying blob sha256:2f7436e79a0bc6cdec6536da54ae6a5863c8e3b5f145e0f8ac0b96306baddbc9
+Copying blob sha256:9a4eb75731c70b74cee93d17b430f48582f130afda047f00250687e0bdbff751
+Copying config sha256:96d24a7b76994daec5bc2910d44f65c6f6d0d1fd272b26cd449f28f9f756b805
+Writing manifest to image destination
+Storing signatures
+--> 96d24a7b769
+Successfully tagged localhost/dperezbayan/wpimagen:14
+96d24a7b76994daec5bc2910d44f65c6f6d0d1fd272b26cd449f28f9f756b805
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_PASS
+[Pipeline] {
+[Pipeline] sh
++ echo ****
++ buildah login -u dperezbayan --password-stdin docker.io
+Login Succeeded!
+[Pipeline] sh
++ buildah push dperezbayan/wpimagen:14 docker://docker.io/dperezbayan/wpimagen:14
+Getting image source signatures
+Copying blob sha256:9a4eb75731c70b74cee93d17b430f48582f130afda047f00250687e0bdbff751
+Copying blob sha256:2f7436e79a0bc6cdec6536da54ae6a5863c8e3b5f145e0f8ac0b96306baddbc9
+Copying config sha256:96d24a7b76994daec5bc2910d44f65c6f6d0d1fd272b26cd449f28f9f756b805
+Writing manifest to image destination
+Storing signatures
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Exportar base de datos)
+[Pipeline] sshagent
+[ssh-agent] Using credentials danieltfg2
+$ ssh-agent
+SSH_AUTH_SOCK=/tmp/ssh-aO06igoC6hDD/agent.163
+SSH_AGENT_PID=166
+Running ssh-add (command line suppressed)
+Identity added: /home/jenkins/agent/workspace/wordpress-ci-cd@tmp/private_key_904869047160757251.key (jenkins-vps)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ mkdir -p /home/jenkins/.ssh
++ ssh-keyscan 192.168.100.1
+# 192.168.100.1:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.1:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.1:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.1:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.1:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
++ ssh-keyscan 192.168.100.2
+# 192.168.100.2:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.2:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.2:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.2:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
+# 192.168.100.2:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11
++ ssh danieltfg@192.168.100.1 mysqldump -u wordpress -pwordpress wordpress
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
++ scp backup.sql danieltfg2@192.168.100.2:/home/danieltfg2/
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 166 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Desplegar en producción)
+[Pipeline] sshagent
+[ssh-agent] Using credentials danieltfg2
+$ ssh-agent
+SSH_AUTH_SOCK=/tmp/ssh-tEFSmm7ojq6C/agent.187
+SSH_AGENT_PID=189
+Running ssh-add (command line suppressed)
+Identity added: /home/jenkins/agent/workspace/wordpress-ci-cd@tmp/private_key_15193354772810627941.key (jenkins-vps)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh danieltfg2@192.168.100.2 cd /home/danieltfg2/TFG-WordPress-K3s && git pull
+Ya está actualizado.
+[Pipeline] sh
++ ssh danieltfg2@192.168.100.2 mysql -u wordpress -pwordpress wordpress < ~/backup.sql
+mysql: [Warning] Using a password on the command line interface can be insecure.
+[Pipeline] sh
++ ssh danieltfg2@192.168.100.2 kubectl apply -f /home/danieltfg2/TFG-WordPress-K3s/k3s/ --kubeconfig=/etc/rancher/k3s/k3s.yaml
+deployment.apps/mysql created
+service/mysql-service created
+persistentvolumeclaim/mysql-pvc created
+persistentvolumeclaim/wordpress-pvc created
+deployment.apps/wordpress created
+service/wordpress created
+configmap/wpdates created
+secret/wppass created
+[Pipeline] sh
++ ssh danieltfg2@192.168.100.2 kubectl apply -f /home/danieltfg2/TFG-WordPress-K3s/ingress.yaml --kubeconfig=/etc/rancher/k3s/k3s.yaml
+ingress.networking.k8s.io/wordpress-ingress created
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 189 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] End of Pipeline
+Finished: SUCCESS
