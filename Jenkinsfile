@@ -84,7 +84,7 @@ spec:
                 mkdir -p ~/.ssh
                 ssh-keyscan 192.168.100.1 >> ~/.ssh/known_hosts
                 ssh-keyscan 192.168.100.2 >> ~/.ssh/known_hosts
-                ssh danieltfg@192.168.100.1 mysqldump -u wordpress -pwordpress wordpress > ~/backup.sql
+                ssh danieltfg@192.168.100.1 mysqldump -u wordpress -pwordpress wordpress > backup.sql
                 scp backup.sql danieltfg2@192.168.100.2:/home/danieltfg2/
             '''
                 }
